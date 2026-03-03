@@ -14,14 +14,19 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
         tabBarButton: HapticTab,
+        tabBarStyle: {
+          paddingTop: 8,
+          height: 90,
+          backgroundColor: "#DCE5F4",
+        },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: "Нүүр хуудас",
+          title: "Хуваарь",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="house.fill" color={color} />
+            <IconSymbol size={28} name="calendar" color={color} />
           ),
         }}
       />
@@ -30,7 +35,7 @@ export default function TabLayout() {
         options={{
           title: "Хичээл",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="paperplane.fill" color={color} />
+            <IconSymbol size={28} name="books.vertical" color={color} />
           ),
         }}
       />
@@ -39,7 +44,7 @@ export default function TabLayout() {
         options={{
           title: "Дүн",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="paperplane.fill" color={color} />
+            <IconSymbol size={28} name="chart.bar" color={color} />
           ),
         }}
       />
@@ -48,7 +53,11 @@ export default function TabLayout() {
         options={{
           title: "Гарах",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="paperplane.fill" color={color} />
+            <IconSymbol
+              size={28}
+              name="rectangle.portrait.and.arrow.right"
+              color={color}
+            />
           ),
         }}
       />

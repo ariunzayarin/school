@@ -1,69 +1,30 @@
 import { StyleSheet } from "react-native";
-import Animated, {
-  interpolate,
-  useAnimatedRef,
-  useAnimatedStyle,
-  useScrollOffset,
-} from "react-native-reanimated";
-
+import Animated from "react-native-reanimated";
 import { ThemedView } from "./themed-view";
-import { useColorScheme } from "../hooks/use-color-scheme";
+import { ThemedText } from "./themed-text";
 import { useThemeColor } from "../hooks/use-theme-color";
+import { Notifications } from "./ui/notifWidget";
 
-const HEADER_HEIGHT = 250;
+const HEADER_HEIGHT = 120;
 
-// type Props = PropsWithChildren<{
-//   headerImage: ReactElement;
-//   headerBackgroundColor: { dark: string; light: string };
-// }>;
-
-export default function ParallaxScrollView({
-  children,
-  headerImage,
-  headerBackgroundColor,
-}) {
+export default function ParallaxScrollView({ children, title }) {
   const backgroundColor = useThemeColor({}, "background");
-  const colorScheme = useColorScheme() ?? "light";
-  const scrollRef = useAnimatedRef();
-  const scrollOffset = useScrollOffset(scrollRef);
-  const headerAnimatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          translateY: interpolate(
-            scrollOffset.value,
-            [-HEADER_HEIGHT, 0, HEADER_HEIGHT],
-            [-HEADER_HEIGHT / 2, 0, HEADER_HEIGHT * 0.75],
-          ),
-        },
-        {
-          scale: interpolate(
-            scrollOffset.value,
-            [-HEADER_HEIGHT, 0, HEADER_HEIGHT],
-            [2, 1, 1],
-          ),
-        },
-      ],
-    };
-  });
 
   return (
-    <Animated.ScrollView
-      ref={scrollRef}
-      style={{ backgroundColor, flex: 1 }}
-      scrollEventThrottle={16}
-    >
-      <Animated.View
-        style={[
-          styles.header,
-          { backgroundColor: headerBackgroundColor[colorScheme] },
-          headerAnimatedStyle,
-        ]}
-      >
-        {headerImage}
+    <ThemedView style={{ flex: 1, backgroundColor }}>
+      <Animated.View style={styles.header}>
+        <ThemedText type="title">{title}</ThemedText>
+        <Notifications />
       </Animated.View>
-      <ThemedView style={styles.content}>{children}</ThemedView>
-    </Animated.ScrollView>
+
+      <Animated.ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={styles.content}
+        scrollEventThrottle={16}
+      >
+        {children}
+      </Animated.ScrollView>
+    </ThemedView>
   );
 }
 
@@ -73,12 +34,17 @@ const styles = StyleSheet.create({
   },
   header: {
     height: HEADER_HEIGHT,
-    overflow: "hidden",
+    flexDirection: "row",
+    backgroundColor: "#DCE5F4",
+    paddingTop: 50,
+    paddingLeft: 20,
+    paddingRight: 20,
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   content: {
-    flex: 1,
     padding: 32,
     gap: 16,
-    overflow: "hidden",
+    backgroundColor: "#fff",
   },
 });
