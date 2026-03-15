@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import { ThemedText } from "../themed-text";
+import ThemedText from "./textWithStyle";
 
 export function Notification({ title, content, type }) {
   const color = type === "warning" ? "#F54927" : "#79DB3D";

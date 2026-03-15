@@ -5,6 +5,7 @@ import Image from "../components/ui/image";
 import TextInput from "../components/ui/textInput";
 import Button from "../components/ui/button";
 import Flex from "../components/ui/flex";
+import ThemedText from "../components/ui/textWithStyle";
 
 const USE_API = false;
 
@@ -120,15 +121,9 @@ export default function SignInScreen() {
         />
 
         {!!error && (
-          <Flex style={{ paddingHorizontal: 4 }}>
-            <Button
-              text={error}
-              variant="ghost"
-              size="sm"
-              disabled
-              textStyle={{ color: "#F54927", fontWeight: "400", fontSize: 13 }}
-            />
-          </Flex>
+          <ThemedText type="error" style={{ paddingHorizontal: 4 }}>
+            {error}
+          </ThemedText>
         )}
       </Flex>
 

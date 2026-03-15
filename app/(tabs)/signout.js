@@ -7,11 +7,11 @@ export default function SignOut() {
   const router = useRouter();
 
   useEffect(() => {
-    logout();
+    handleLogout();
   }, []);
 
-  const logout = async () => {
-    await AsyncStorage.removeItem("userRole");
+  const handleLogout = async () => {
+    await AsyncStorage.multiRemove(["userRole", "userToken"]);
     router.replace("/signin");
   };
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 
-import { ThemedText } from "../themed-text";
+import ThemedText from "./textWithStyle";
 import { ThemedView } from "../themed-view";
 import { IconSymbol } from "./icon-symbol";
 import { Colors } from "../../constants/theme";

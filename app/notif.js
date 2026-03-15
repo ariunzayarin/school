@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "expo-router";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { IconSymbol } from "../components/ui/icon-symbol";
-import { ThemedText } from "../components/themed-text";
+import  ThemedText  from "../components/ui/textWithStyle";
 import { Notification } from "../components/ui/notif";
 
 export default function Notifications() {

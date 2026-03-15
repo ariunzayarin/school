@@ -6,6 +6,69 @@ export const days = [
   { key: "fri", label: "Баасан" },
 ];
 
+export const lessons = {
+  cysec301: {
+    name: "Цахим аюулгүй байдал",
+    grades: [
+      { label: "Ирц", score: 7, color: "#A8BEF0" },
+      { label: "Бие даалт", score: 9, color: "#A8D8D0" },
+      { label: "Лаборатори", score: 20, color: "#7B93C8" },
+      { label: "Явцын шалгалт", score: 10, color: "#3D5A8A" },
+      // { label: "Улиралын шалгалт", score: 24, color: "#6a8dc5ff" },
+    ],
+  },
+  py302: {
+    name: "Пайтон програмчлал ба өгөгдлийн шинжилгээ",
+    grades: [
+      { label: "Ирц", score: 10, color: "#A8BEF0" },
+      { label: "Бие даалт", score: 10, color: "#A8D8D0" },
+      { label: "Лаборатори", score: 20, color: "#7B93C8" },
+      { label: "Явцын шалгалт", score: 10, color: "#3D5A8A" },
+      // { label: "Улиралын шалгалт", score: 24, color: "#6a8dc5ff" },
+    ],
+  },
+  math303: {
+    name: "Магадлал ба статистик",
+    grades: [
+      { label: "Ирц", score: 7, color: "#A8BEF0" },
+      { label: "Бие даалт", score: 9, color: "#A8D8D0" },
+      { label: "Лаборатори", score: 20, color: "#7B93C8" },
+      { label: "Явцын шалгалт", score: 10, color: "#3D5A8A" },
+      // { label: "Улиралын шалгалт", score: 24, color: "#6a8dc5ff" },
+    ],
+  },
+  ai304: {
+    name: "Хиймэл оюун ухааны үндэс ба машин сургалт",
+    grades: [
+      { label: "Ирц", score: 7, color: "#A8BEF0" },
+      { label: "Бие даалт", score: 9, color: "#A8D8D0" },
+      { label: "Лаборатори", score: 20, color: "#7B93C8" },
+      { label: "Явцын шалгалт", score: 10, color: "#3D5A8A" },
+      // { label: "Улиралын шалгалт", score: 24, color: "#6a8dc5ff" },
+    ],
+  },
+  net305: {
+    name: "Компьютерийн сүлжээ",
+    grades: [
+      { label: "Ирц", score: 7, color: "#A8BEF0" },
+      { label: "Бие даалт", score: 9, color: "#A8D8D0" },
+      { label: "Лаборатори", score: 20, color: "#7B93C8" },
+      { label: "Явцын шалгалт", score: 10, color: "#3D5A8A" },
+      // { label: "Улиралын шалгалт", score: 24, color: "#6a8dc5ff" },
+    ],
+  },
+  mob306: {
+    name: "Мобайл програмчлал",
+    grades: [
+      { label: "Ирц", score: 7, color: "#A8BEF0" },
+      { label: "Бие даалт", score: 9, color: "#A8D8D0" },
+      { label: "Лаборатори", score: 20, color: "#7B93C8" },
+      { label: "Явцын шалгалт", score: 10, color: "#3D5A8A" },
+      // { label: "Улиралын шалгалт", score: 24, color: "#6a8dc5ff" },
+    ],
+  },
+};
+
 export const schedule = {
   mon: [
     {
@@ -14,6 +77,11 @@ export const schedule = {
       type: "лекц",
       room: "ШМТИС 809",
       teacher: "Төгөлдөр",
+      attendance: {
+        lecture: [1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1],
+        laboratory: [1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1],
+        seminar: [],
+      },
     },
     {
       time: "11:40-13:10",
@@ -21,6 +89,11 @@ export const schedule = {
       type: "лекц",
       room: "ШМТИС 809",
       teacher: "Ц.Солонгоо",
+      attendance: {
+        lecture: [1, 1, 0, 1, 1, 1, 0, 1],
+        laboratory: [1, 0, 1, 1, 1, 0, 1, 1],
+        seminar: [1, 1, 0, 1, 0, 0, 1, 1],
+      },
     },
     {
       time: "14:00-15:30",
@@ -28,13 +101,23 @@ export const schedule = {
       type: "лаборатор",
       room: "ШМТИС 913",
       teacher: "Ц.Солонгоо",
+      attendance: {
+        lecture: [1, 1, 0, 1, 1, 1, 0, 1],
+        laboratory: [1, 0, 1, 1, 1, 0, 1, 1],
+        seminar: [],
+      },
     },
     {
       time: "15:40-17:10",
-      subject: "",
+      subject: "Цахим аюулгүй байдал",
       type: "лаборатор",
       room: "ШМТИС 913",
       teacher: "Төгөлдөр",
+      attendance: {
+        lecture: [1, 1, 0, 1, 1, 1, 0, 1],
+        laboratory: [1, 0, 1, 1, 1, 0, 1, 1],
+        seminar: [],
+      },
     },
   ],
   tue: [],
@@ -45,6 +128,11 @@ export const schedule = {
       type: "лаборатор",
       room: "ШМТИС 913",
       teacher: "Ц.Солонгоо",
+      attendance: {
+        lecture: [1, 1, 0, 1, 1, 1, 0, 1],
+        laboratory: [1, 0, 1, 1, 1, 0, 1, 1],
+        seminar: [],
+      },
     },
     {
       time: "10:00-11:30",
@@ -52,6 +140,11 @@ export const schedule = {
       type: "лекц",
       room: "ШМТИС 711",
       teacher: "Н.Анхбаяр",
+      attendance: {
+        lecture: [1, 1, 0, 1, 1, 1, 0, 1],
+        laboratory: [1, 0, 1, 1, 1, 0, 1, 1],
+        seminar: [],
+      },
     },
     {
       time: "11:40-13:10",
@@ -59,6 +152,11 @@ export const schedule = {
       type: "семинар",
       room: "ШМТИС 712",
       teacher: "Б.Санчир",
+      attendance: {
+        lecture: [1, 1, 0, 1, 1, 1, 0, 1],
+        laboratory: [1, 0, 1, 1, 1, 0, 1, 1],
+        seminar: [],
+      },
     },
     {
       time: "14:00-15:30",
@@ -66,6 +164,11 @@ export const schedule = {
       type: "лекц",
       room: "ШМТИС 711",
       teacher: "Б.Санчир",
+      attendance: {
+        lecture: [1, 1, 0, 1, 1, 1, 0, 1],
+        laboratory: [1, 0, 1, 1, 1, 0, 1, 1],
+        seminar: [],
+      },
     },
   ],
   thu: [],
@@ -76,6 +179,11 @@ export const schedule = {
       type: "лекц",
       room: "ШМТИС 913",
       teacher: "Ц.Солонгоо",
+      attendance: {
+        lecture: [1, 1, 0, 1, 1, 1, 0, 1],
+        laboratory: [1, 0, 1, 1, 1, 0, 1, 1],
+        seminar: [],
+      },
     },
     {
       time: "10:00-11:30",
@@ -83,6 +191,11 @@ export const schedule = {
       type: "лекц",
       room: "ШМТИС 809",
       teacher: "Б.Ганзориг",
+      attendance: {
+        lecture: [1, 1, 0, 1, 1, 1, 0, 1],
+        laboratory: [1, 0, 1, 1, 1, 0, 1, 1],
+        seminar: [],
+      },
     },
     {
       time: "11:40-13:10",
@@ -90,6 +203,11 @@ export const schedule = {
       type: "лаборатор",
       room: "ШМТИС 913",
       teacher: "Б.Ганзориг",
+      attendance: {
+        lecture: [1, 1, 0, 1, 1, 1, 0, 1],
+        laboratory: [1, 0, 1, 1, 1, 0, 1, 1],
+        seminar: [],
+      },
     },
     {
       time: "14:00-15:30",
@@ -97,6 +215,11 @@ export const schedule = {
       type: "лаборатор",
       room: "ШМТИС 912",
       teacher: "Н.Анхбаяр",
+      attendance: {
+        lecture: [1, 1, 0, 1, 1, 1, 0, 1],
+        laboratory: [1, 0, 1, 1, 1, 0, 1, 1],
+        seminar: [],
+      },
     },
   ],
 };

@@ -11,6 +11,7 @@ export default function Flex({
   full,
   gap,
   wrap,
+  backgroundColor,
 }) {
   return (
     <View
@@ -22,6 +23,7 @@ export default function Flex({
         full && { flex: 1 },
         gap != null && { gap },
         wrap && { flexWrap: "wrap" },
+        backgroundColor && { backgroundColor },
         style,
       ]}
     >

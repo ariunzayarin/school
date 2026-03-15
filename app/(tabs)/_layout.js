@@ -18,6 +18,10 @@ export default function TabLayout() {
           paddingTop: 8,
           height: 90,
           backgroundColor: "#DCE5F4",
+          shadowColor: "#000",
+          shadowOffset: { width: 0, height: 1 },
+          shadowOpacity: 0.2,
+          shadowRadius: 4,
         },
       }}
     >
@@ -31,7 +35,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="lesson"
+        name="lessons"
         options={{
           title: "Хичээл",
           tabBarIcon: ({ color }) => (

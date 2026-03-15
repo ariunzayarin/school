@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import Animated from "react-native-reanimated";
 import { ThemedView } from "./themed-view";
-import { ThemedText } from "./themed-text";
+import ThemedText from "./ui/textWithStyle";
 import { useThemeColor } from "../hooks/use-theme-color";
 import { Notifications } from "./ui/notifWidget";
 
@@ -12,10 +12,12 @@ export default function ParallaxScrollView({ children, title }) {
 
   return (
     <ThemedView style={{ flex: 1, backgroundColor }}>
-      <Animated.View style={styles.header}>
-        <ThemedText type="title">{title}</ThemedText>
-        <Notifications />
-      </Animated.View>
+      {title && (
+        <Animated.View style={styles.header}>
+          <ThemedText type="title">{title}</ThemedText>
+          <Notifications />
+        </Animated.View>
+      )}
 
       <Animated.ScrollView
         style={{ flex: 1 }}
@@ -29,9 +31,6 @@ export default function ParallaxScrollView({ children, title }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   header: {
     height: HEADER_HEIGHT,
     flexDirection: "row",
@@ -43,8 +42,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   content: {
-    padding: 32,
+    padding: 20,
     gap: 16,
-    backgroundColor: "#fff",
   },
 });
