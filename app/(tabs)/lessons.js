@@ -17,9 +17,7 @@ export default function LessonScreen() {
 
   if (lessonId !== null) {
     return (
-      <ParallaxScrollView title="Хичээл">
-        <LessonDetail isTeacher lessonId={lessonId} onBack={closeLesson} />
-      </ParallaxScrollView>
+      <LessonDetail isTeacher lesson={lessons[lessonId]} onBack={closeLesson} />
     );
   }
 

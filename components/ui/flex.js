@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 
 export default function Flex({
   children,
@@ -12,6 +12,7 @@ export default function Flex({
   gap,
   wrap,
   backgroundColor,
+  isWhiteContainer,
 }) {
   return (
     <View
@@ -24,6 +25,7 @@ export default function Flex({
         gap != null && { gap },
         wrap && { flexWrap: "wrap" },
         backgroundColor && { backgroundColor },
+        isWhiteContainer && styles.card,
         style,
       ]}
     >
@@ -31,3 +33,17 @@ export default function Flex({
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: "#fff",
+    borderRadius: 16,
+    gap: 10,
+    padding: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 2,
+  },
+});

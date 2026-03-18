@@ -4,20 +4,31 @@ import { ThemedView } from "./themed-view";
 import ThemedText from "./ui/textWithStyle";
 import { useThemeColor } from "../hooks/use-theme-color";
 import { Notifications } from "./ui/notifWidget";
+import Button from "../components/ui/button";
 
 const HEADER_HEIGHT = 120;
 
-export default function ParallaxScrollView({ children, title }) {
+export default function ParallaxScrollView({
+  children,
+  title,
+  backButtonOnClick,
+}) {
   const backgroundColor = useThemeColor({}, "background");
 
   return (
     <ThemedView style={{ flex: 1, backgroundColor }}>
-      {title && (
-        <Animated.View style={styles.header}>
-          <ThemedText type="title">{title}</ThemedText>
-          <Notifications />
-        </Animated.View>
-      )}
+      <Animated.View style={styles.header}>
+        {title && <ThemedText type="title">{title}</ThemedText>}
+        {backButtonOnClick && (
+          <Button
+            variant="simple"
+            text="Буцах"
+            iconLeft="chevron.left"
+            onClick={backButtonOnClick}
+          />
+        )}
+        <Notifications />
+      </Animated.View>
 
       <Animated.ScrollView
         style={{ flex: 1 }}

@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   View,
 } from "react-native";
+import { IconSymbol } from "../../components/ui/icon-symbol";
 
 export default function Button({
   text,
@@ -41,8 +42,7 @@ export default function Button({
     textStyle,
   ];
 
-  const spinnerColor =
-    variant === "outline" || variant === "simple" ? "#669AF2" : "#fff";
+  const spinnerColor = variant === "outline" ? "#669AF2" : "#fff";
 
   return (
     <TouchableOpacity
@@ -55,9 +55,23 @@ export default function Button({
         <ActivityIndicator size="small" color={spinnerColor} />
       ) : (
         <View style={styles.inner}>
-          {iconLeft && <View style={styles.iconLeft}>{iconLeft}</View>}
+          {iconLeft && (
+            <IconSymbol
+              color="#333"
+              style={styles.iconLeft}
+              size={15}
+              name={iconLeft}
+            />
+          )}
           {text && <Text style={labelStyles}>{text}</Text>}
-          {iconRight && <View style={styles.iconRight}>{iconRight}</View>}
+          {iconRight && (
+            <IconSymbol
+              color="#333"
+              style={styles.iconRight}
+              size={15}
+              name={iconRight}
+            />
+          )}
         </View>
       )}
     </TouchableOpacity>
@@ -87,9 +101,6 @@ const styles = StyleSheet.create({
   variant_primary: {
     backgroundColor: "#669AF2",
   },
-  // variant_secondary: {
-  //   backgroundColor: "#E8EEFB",
-  // },
   variant_outline: {
     backgroundColor: "transparent",
     borderWidth: 1,
@@ -98,10 +109,6 @@ const styles = StyleSheet.create({
   variant_simple: {
     backgroundColor: "transparent",
   },
-  // variant_danger: {
-  //   backgroundColor: "#F54927",
-  // },
-
   label: {
     fontWeight: "600",
   },
@@ -110,10 +117,8 @@ const styles = StyleSheet.create({
   label_lg: { fontSize: 16 },
 
   label_primary: { color: "#fff" },
-  // label_secondary: { color: "#669AF2" },
   label_outline: { color: "#669AF2" },
-  label_simple: { color: "#669AF2" },
-  // label_danger: { color: "#fff" },
+  label_simple: { color: "#333" },
 
   block: { width: "100%" },
   rounded: { borderRadius: 999 },
