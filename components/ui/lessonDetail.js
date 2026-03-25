@@ -1,38 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet } from "react-native";
 import ThemedText from "../ui/textWithStyle";
 import Flex from "../ui/flex";
 import ParallaxScrollView from "../../components/parallax-scroll-view";
-import AttendanceChart from "./lineChart";
 import DropableContainer from "./dropableContainer";
-import Dropdown from "./dropdown";
-import AttendanceTable from "./attandanceTable";
-
-function AssignmentRow({ name, dateRange, score }) {
-  return (
-    <Flex horizontal spaceBetween alignCenter style={styles.assignmentRow}>
-      <Flex style={{ flexShrink: 1, marginRight: 12 }}>
-        <ThemedText type="defaultSemiBold" style={styles.assignmentName}>
-          {name}
-        </ThemedText>
-        <ThemedText style={styles.assignmentDate}>{dateRange}</ThemedText>
-      </Flex>
-      <ThemedText type="defaultSemiBold" style={styles.assignmentScore}>
-        {score} оноо
-      </ThemedText>
-    </Flex>
-  );
-}
+import AttendanceRecord from "./attendanceRecord";
+import AssignmentRecord from "./assignmentRecord";
+import LessonCard from "./lessonCard";
 
 export default function LessonDetail({ lesson, onBack }) {
-  const [filter, setFilter] = useState("Лаборатори");
-
   if (!lesson) return null;
-
-  const isAttendanceFilter = filter === "Ирц";
-  const filteredAssignments = isAttendanceFilter
-    ? []
-    : (lesson.assignments ?? []).filter((a) => a.type === filter);
 
   const assignmentTypes = [...new Set(lesson.assignments.map((a) => a.type))];
 
@@ -79,76 +56,31 @@ export default function LessonDetail({ lesson, onBack }) {
 
   return (
     <ParallaxScrollView backButtonOnClick={() => onBack()}>
-      <DropableContainer main={main} child={child} />
+      <Flex gap={5}>
+        <DropableContainer main={main} child={child} />
 
-      {lesson.attendance && (
-        <Flex gap={12}>
-          <Flex gap={12} isWhiteContainer>
-            <ThemedText>Ирцийн мэдээлэл</ThemedText>
-            <AttendanceChart
-              attendance={{
-                lecture: lesson.attendance.lecture ?? [],
-                laboratory: lesson.attendance.laboratory ?? [],
-                seminar: lesson.attendance.seminar ?? [],
-              }}
-            />
-          </Flex>
-          {assignmentTypes.map(
-            (type) =>
-              lesson.assignments?.filter((a) => a.type === type).length > 0 && (
-                <AttendanceChart
-                  key={type}
-                  mini
-                  title={type}
-                  assignments={
-                    lesson.assignments?.filter((a) => a.type === type) ?? []
-                  }
-                />
-              ),
-          )}
-        </Flex>
-      )}
+        <LessonCard
+          lessonId={lesson.id}
+          lessonName={lesson.name}
+          grades={lesson.grades}
+        />
 
-      <Flex isWhiteContainer>
-        <Flex horizontal alignCenter gap={8} style={{ marginBottom: 12 }}>
-          <Dropdown
-            options={[...assignmentTypes, "Ирц"]}
-            value={filter}
-            onChange={setFilter}
-          />
-        </Flex>
-
-        {isAttendanceFilter ? (
-          lesson.attendance ? (
-            <AttendanceTable
-              attendance={{
-                lecture: lesson.attendance.lecture ?? [],
-                laboratory: lesson.attendance.laboratory ?? [],
-                seminar: lesson.attendance.seminar ?? [],
-              }}
-            />
-          ) : (
-            <ThemedText style={styles.emptyText}>
-              Ирцийн мэдээлэл байхгүй байна
-            </ThemedText>
-          )
-        ) : filteredAssignments.length === 0 ? (
-          <ThemedText style={styles.emptyText}>
-            Өгөгдөл байхгүй байна
-          </ThemedText>
-        ) : (
-          filteredAssignments.map((a, i) => (
-            <React.Fragment key={i}>
-              <AssignmentRow
-                name={a.name}
-                dateRange={a.dateRange}
-                score={a.score}
+        <AttendanceRecord
+          attendance={{
+            lecture: lesson.attendance.lecture ?? [],
+            laboratory: lesson.attendance.laboratory ?? [],
+            seminar: lesson.attendance.seminar ?? [],
+          }}
+          collapsible
+        />
+        {assignmentTypes.map(
+          (type) =>
+            lesson.assignments?.filter((a) => a.type === type).length > 0 && (
+              <AssignmentRecord
+                key={type}
+                assignments={lesson.assignments?.filter((a) => a.type === type)}
               />
-              {i < filteredAssignments.length - 1 && (
-                <Flex style={styles.divider} />
-              )}
-            </React.Fragment>
-          ))
+            ),
         )}
       </Flex>
     </ParallaxScrollView>
@@ -178,110 +110,5 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: "#444",
     flexShrink: 1,
-  },
-
-  // Charts
-  chartsRow: {
-    // horizontal flex from Flex component
-  },
-  miniChartCard: {
-    flex: 1,
-    backgroundColor: "#fff",
-    borderRadius: 16,
-    padding: 12,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.06,
-    shadowRadius: 6,
-    elevation: 2,
-  },
-  miniChartTitle: {
-    fontSize: 14,
-    color: "#1a1a1a",
-    marginBottom: 4,
-  },
-  miniChart: {
-    marginLeft: -12,
-    borderRadius: 8,
-  },
-
-  // Assignments
-  sectionTitle: {
-    fontSize: 15,
-    color: "#1a1a1a",
-    marginBottom: 4,
-  },
-  assignmentRow: {
-    paddingVertical: 10,
-  },
-  assignmentName: {
-    fontSize: 13,
-    color: "#1a1a1a",
-  },
-  assignmentDate: {
-    fontSize: 12,
-    color: "#999",
-    marginTop: 2,
-  },
-  assignmentScore: {
-    fontSize: 13,
-    color: "#669AF2",
-    flexShrink: 0,
-  },
-  divider: {
-    height: 1,
-    backgroundColor: "#F0F3FA",
-  },
-  emptyText: {
-    fontSize: 13,
-    color: "#aaa",
-    textAlign: "center",
-    paddingVertical: 16,
-  },
-
-  // Dropdown
-  dropdownWrapper: {
-    position: "relative",
-  },
-  dropdownTrigger: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 6,
-  },
-  dropdownLabel: {
-    fontSize: 15,
-    color: "#1a1a1a",
-  },
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: "rgba(0,0,0,0.15)",
-    justifyContent: "flex-end",
-    paddingTop: 160,
-    paddingHorizontal: 20,
-  },
-  dropdownMenu: {
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.12,
-    shadowRadius: 12,
-    elevation: 8,
-    overflow: "hidden",
-  },
-  dropdownItem: {
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-  },
-  dropdownItemActive: {
-    backgroundColor: "#EEF3FD",
-  },
-  dropdownItemText: {
-    fontSize: 15,
-    color: "#333",
-  },
-  dropdownItemTextActive: {
-    color: "#669AF2",
-    fontWeight: "600",
   },
 });

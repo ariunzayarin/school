@@ -16,6 +16,21 @@ export default function GradeCard({
 }) {
   const total = grades.reduce((sum, g) => sum + g.score, 0);
 
+  const renderButton = () => {
+    if (onSelect) {
+      return (
+        <TouchableOpacity
+          onPress={() => onSelect(lessonId)}
+          activeOpacity={0.7}
+          style={styles.detailRow}
+        >
+          <ThemedText style={styles.detailText}>Дэлгэрэнгүй</ThemedText>
+          <IconSymbol name="chevron.right" size={16} color="#1a1a1a" />
+        </TouchableOpacity>
+      );
+    }
+  };
+
   return (
     <Flex isWhiteContainer>
       <ThemedText type="defaultSemiBold" style={styles.title}>
@@ -56,14 +71,7 @@ export default function GradeCard({
         ))}
       </Flex>
 
-      <TouchableOpacity
-        onPress={() => onSelect(lessonId)}
-        activeOpacity={0.7}
-        style={styles.detailRow}
-      >
-        <ThemedText style={styles.detailText}>Дэлгэрэнгүй</ThemedText>
-        <IconSymbol name="chevron.right" size={16} color="#1a1a1a" />
-      </TouchableOpacity>
+      {renderButton()}
     </Flex>
   );
 }

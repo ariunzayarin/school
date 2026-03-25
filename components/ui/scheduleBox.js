@@ -1,8 +1,8 @@
 import React from "react";
 import ThemedText from "./textWithStyle";
 import Flex from "./flex";
-import AttendanceChart from "./lineChart";
 import DropableContainer from "./dropableContainer";
+import AttendanceRecord from "./attendanceRecord";
 
 export default function ScheduleBox({ boxItems, activeBoxKey }) {
   return (
@@ -22,8 +22,7 @@ export default function ScheduleBox({ boxItems, activeBoxKey }) {
 
         const child = hasAttendance ? (
           <Flex gap={10}>
-            <ThemedText>Ирцийн мэдээлэл</ThemedText>
-            <AttendanceChart
+            <AttendanceRecord
               attendance={{
                 lecture: item.attendance.lecture ?? [],
                 laboratory: item.attendance.laboratory ?? [],
