@@ -10,10 +10,12 @@ export default function ProgressBar({
   collapsible,
   label,
   type = "attendance",
+  color,
+  percentage,
 }) {
   const progressBarLength = collapsible
     ? SCREEN_WIDTH - 120
-    : SCREEN_WIDTH - 100;
+    : SCREEN_WIDTH - 80;
 
   const getAttendanceStats = (data = []) => {
     const total = data.length;
@@ -40,25 +42,52 @@ export default function ProgressBar({
     };
   };
 
-  const { percent, meta } =
-    type === "attendance" ? getAttendanceStats(data) : getScoreStats(data);
+  const { percent, meta } = percentage
+    ? { percent: percentage, meta: percentage }
+    : type === "attendance"
+      ? getAttendanceStats(data)
+      : getScoreStats(data);
 
-  const Bar = () => (
-    <Flex style={[styles.progressContainer, { width: progressBarLength }]}>
-      <Flex style={[styles.progressFill, { width: `${percent}%` }]} />
-    </Flex>
-  );
+  const Bar = () => {
+    const length = label ? progressBarLength : progressBarLength - 25;
+    return (
+      <Flex style={[styles.progressContainer, { width: length }]}>
+        <Flex
+          style={[
+            styles.progressFill,
+            { width: `${percent}%` },
+            color && { backgroundColor: color },
+          ]}
+        />
+      </Flex>
+    );
+  };
+
+  const ifLabeled = () => {
+    return (
+      <Flex gap={6}>
+        <Flex horizontal spaceBetween style={{ width: progressBarLength }}>
+          <ThemedText style={styles.label}>{label}</ThemedText>
+          <ThemedText style={styles.percent}>{percent}%</ThemedText>
+        </Flex>
+
+        <Bar />
+
+        <ThemedText style={styles.meta}>{meta}</ThemedText>
+      </Flex>
+    );
+  };
 
   return (
-    <Flex gap={6}>
-      <Flex horizontal spaceBetween style={{ width: progressBarLength }}>
-        <ThemedText style={styles.label}>{label}</ThemedText>
-        <ThemedText style={styles.percent}>{percent}%</ThemedText>
-      </Flex>
-
-      <Bar />
-
-      <ThemedText style={styles.meta}>{meta}</ThemedText>
+    <Flex>
+      {label ? (
+        ifLabeled()
+      ) : (
+        <Flex alignCenter horizontal spaceBetween gap={6}>
+          <Bar />
+          <ThemedText style={styles.percent}>{percent}%</ThemedText>
+        </Flex>
+      )}
     </Flex>
   );
 }

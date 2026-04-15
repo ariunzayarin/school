@@ -53,6 +53,15 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="curriculum"
+        options={{
+          title: "Хөтөлбөр",
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="book" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="signout"
         options={{
           title: "Гарах",

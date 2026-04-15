@@ -6,6 +6,8 @@ export const days = [
   { key: "fri", label: "Баасан" },
 ];
 
+export const student = [{ firstName: "Ариунзаяа", lastName: "Энхбаяр" }];
+
 export const lessons = {
   cysec301: {
     name: "Цахим аюулгүй байдал",
@@ -48,7 +50,7 @@ export const lessons = {
       },
       {
         type: "Лаборатори",
-        name: "Лаборатори 3: Багшийн хэрэгцээ тодорхойлох",
+        name: "Лаборатори 4: Багшийн хэрэгцээ тодорхойлох",
         dateRange: "2025/02/03 - 2025/02/24",
         score: null,
         maxScore: 3,
@@ -449,4 +451,548 @@ export const schedule = {
       },
     },
   ],
+};
+export const semesters = [
+  {
+    id: "2024-spring",
+    label: "2024 — Хавар",
+    gpa: 3.7,
+    totalCredits: 18,
+    courses: [
+      {
+        name: "Мобайл програмчлал",
+        credits: 3,
+        grade: "A",
+        score: 92,
+      },
+      {
+        name: "Хиймэл оюун ухааны үндэс",
+        credits: 3,
+        grade: "A−",
+        score: 88,
+      },
+      {
+        name: "Компьютерийн сүлжээ",
+        credits: 3,
+        grade: "B+",
+        score: 85,
+      },
+      {
+        name: "Магадлал ба статистик",
+        credits: 3,
+        grade: "B",
+        score: 82,
+      },
+      {
+        name: "Цахим аюулгүй байдал",
+        credits: 3,
+        grade: "A",
+        score: 94,
+      },
+      {
+        name: "Пайтон програмчлал",
+        credits: 3,
+        grade: "B+",
+        score: 87,
+      },
+    ],
+  },
+  {
+    id: "2023-fall",
+    label: "2023 — Намар",
+    gpa: 3.5,
+    totalCredits: 16,
+    courses: [
+      {
+        name: "Өгөгдлийн бүтэц",
+        credits: 3,
+        grade: "A−",
+        score: 89,
+      },
+      {
+        name: "Алгоритм ба нарийн төвөгтэй байдал",
+        credits: 3,
+        grade: "B+",
+        score: 86,
+      },
+      {
+        name: "Веб програмчлал",
+        credits: 3,
+        grade: "A",
+        score: 91,
+        color: "#F5A623",
+      },
+      {
+        name: "Тооцооллын онол",
+        credits: 4,
+        grade: "B",
+        score: 80,
+      },
+      {
+        name: "Мэдээллийн систем",
+        credits: 3,
+        grade: "B+",
+        score: 85,
+      },
+    ],
+  },
+  {
+    id: "2023-spring",
+    label: "2023 — Хавар",
+    gpa: 3.3,
+    totalCredits: 15,
+    courses: [
+      {
+        name: "Объект хандлагат програмчлал",
+        credits: 3,
+        grade: "A",
+        score: 93,
+      },
+      {
+        name: "Мэдээллийн сан",
+        credits: 3,
+        grade: "B",
+        score: 82,
+      },
+      {
+        name: "Дискрет математик",
+        credits: 3,
+        grade: "B+",
+        score: 85,
+        color: "#F5A623",
+      },
+      {
+        name: "Компьютерийн архитектур",
+        credits: 3,
+        grade: "C+",
+        score: 76,
+      },
+      { name: "Физик", credits: 3, grade: "B−", score: 79, color: "#9B7CE8" },
+    ],
+  },
+  {
+    id: "2022-fall",
+    label: "2022 — Намар",
+    gpa: 3.1,
+    totalCredits: 15,
+    courses: [
+      {
+        name: "Програмчлалын үндэс",
+        credits: 3,
+        grade: "A",
+        score: 95,
+      },
+      {
+        name: "Математик шинжилгээ",
+        credits: 3,
+        grade: "B",
+        score: 81,
+      },
+      { name: "Физик I", credits: 3, grade: "C+", score: 74, color: "#F5A623" },
+      {
+        name: "Англи хэл I",
+        credits: 3,
+        grade: "B+",
+        score: 86,
+      },
+      {
+        name: "Монгол хэл",
+        credits: 3,
+        grade: "A−",
+        score: 88,
+      },
+    ],
+  },
+];
+
+export const ASSIGNMENTS = [
+  {
+    id: "1",
+    subject: "Linear Algebra",
+    title: "Problem Set 7 — Eigenvalues",
+    due: "Due tomorrow",
+    type: "Written",
+    dateRange: "2025/02/03 - 2025/02/24",
+    pts: 40,
+    icon: "📐",
+    urgency: "urgent",
+  },
+  {
+    id: "2",
+    subject: "Data Structures",
+    title: "Lab 5 — Binary Search Tree",
+    due: "Due in 3 days",
+    type: "Coding",
+    pts: 60,
+    icon: "💻",
+    urgency: "warning",
+    dateRange: "2025/02/03 - 2025/02/24",
+  },
+  {
+    id: "3",
+    subject: "Statistics",
+    title: "Midterm Report — Regression Analysis",
+    due: "Due Apr 12",
+    type: "Report",
+    pts: 100,
+    icon: "📊",
+    urgency: "normal",
+    dateRange: "2025/02/03 - 2025/02/24",
+  },
+];
+
+export const ALL_COURSES = [
+  {
+    category: "basic",
+    type: "required",
+    courses: [
+      {
+        code: "CS101",
+        name: "Програмчлалын үндэс",
+        credits: 4,
+        prerequisites: [],
+      },
+      {
+        code: "CS102",
+        name: "Компьютерийн үндэс",
+        credits: 3,
+        prerequisites: [],
+      },
+      {
+        code: "MATH101",
+        name: "Тооцооллын математик I",
+        credits: 6,
+        prerequisites: [],
+      },
+      {
+        code: "MATH102",
+        name: "Шугаман алгебр",
+        credits: 6,
+        prerequisites: ["MATH101"],
+      },
+      {
+        code: "ENG101",
+        name: "Академик бичгийн чадвар",
+        credits: 4,
+        prerequisites: [],
+      },
+      { code: "PHYS101", name: "Физик I", credits: 5, prerequisites: [] },
+    ],
+  },
+  {
+    category: "basic",
+    type: "elective",
+    courses: [
+      {
+        code: "ENG102",
+        name: "Техникийн харилцаа холбоо",
+        credits: 3,
+        prerequisites: ["ENG101"],
+      },
+      {
+        code: "SOC101",
+        name: "Социологийн үндэс",
+        credits: 3,
+        prerequisites: [],
+      },
+      {
+        code: "PHIL101",
+        name: "Логик ба шүүмжлэлт сэтгэлгээ",
+        credits: 3,
+        prerequisites: [],
+      },
+    ],
+  },
+  {
+    category: "basicMajor",
+    type: "required",
+    courses: [
+      {
+        code: "CS201",
+        name: "Өгөгдлийн бүтэц ба алгоритм",
+        credits: 6,
+        prerequisites: ["CS101"],
+      },
+      {
+        code: "CS202",
+        name: "Дискрет математик",
+        credits: 5,
+        prerequisites: ["MATH101"],
+      },
+      {
+        code: "CS203",
+        name: "Объект хандалтат програмчлал",
+        credits: 5,
+        prerequisites: ["CS101"],
+      },
+      {
+        code: "CS210",
+        name: "Компьютерийн архитектур",
+        credits: 5,
+        prerequisites: ["CS102"],
+      },
+      {
+        code: "CS215",
+        name: "Өгөгдлийн сангийн систем",
+        credits: 5,
+        prerequisites: ["CS201"],
+      },
+    ],
+  },
+  {
+    category: "basicMajor",
+    type: "elective",
+    courses: [
+      {
+        code: "CS220",
+        name: "Вэб хөгжүүлэлтийн үндэс",
+        credits: 4,
+        prerequisites: ["CS101"],
+      },
+      {
+        code: "CS225",
+        name: "UI/UX дизайны үндэс",
+        credits: 3,
+        prerequisites: [],
+      },
+      {
+        code: "CS230",
+        name: "Скрипт хэлүүд",
+        credits: 3,
+        prerequisites: ["CS101"],
+      },
+    ],
+  },
+  {
+    category: "major",
+    type: "required",
+    courses: [
+      {
+        code: "CS305",
+        name: "Үйлдлийн систем",
+        credits: 6,
+        prerequisites: ["CS201", "CS202"],
+      },
+      {
+        code: "CS310",
+        name: "Компьютерийн сүлжээ",
+        credits: 5,
+        prerequisites: ["CS201"],
+      },
+      {
+        code: "CS320",
+        name: "Програм хангамжийн инженерчлэл",
+        credits: 5,
+        prerequisites: ["CS203"],
+      },
+      {
+        code: "CS330",
+        name: "Компиляторын зохиомж",
+        credits: 5,
+        prerequisites: ["CS202", "CS203"],
+      },
+      {
+        code: "CS490",
+        name: "Төгсөлтийн төсөл",
+        credits: 8,
+        prerequisites: ["CS320", "CS305"],
+      },
+    ],
+  },
+  {
+    category: "major",
+    type: "elective",
+    courses: [
+      {
+        code: "CS401",
+        name: "Машин сургалт",
+        credits: 5,
+        prerequisites: ["CS201", "MATH102"],
+      },
+      {
+        code: "CS415",
+        name: "Гар утасны апп хөгжүүлэлт",
+        credits: 4,
+        prerequisites: ["CS203"],
+      },
+      {
+        code: "CS420",
+        name: "Кибер аюулгүй байдлын үндэс",
+        credits: 4,
+        prerequisites: ["CS310"],
+      },
+      {
+        code: "CS425",
+        name: "Үүлэн тооцоолол",
+        credits: 4,
+        prerequisites: ["CS310"],
+      },
+      {
+        code: "CS430",
+        name: "Хиймэл оюун ухаан",
+        credits: 5,
+        prerequisites: ["CS401"],
+      },
+    ],
+  },
+];
+
+export const SUGGESTED_PLAN = [
+  {
+    semester: "1A",
+    totalCredits: 22,
+    courses: [
+      {
+        code: "CS101",
+        name: "Программ хангамжийн үндэс",
+        credits: 4,
+        type: "required",
+        prerequisites: [],
+      },
+      {
+        code: "CS202",
+        name: "Дискрет математик",
+        credits: 5,
+        type: "required",
+        prerequisites: [],
+      },
+      {
+        code: "MATH101",
+        name: "Математик анализ I",
+        credits: 6,
+        type: "required",
+        prerequisites: [],
+      },
+      {
+        code: "ENG101",
+        name: "Академик бичиглэл",
+        credits: 4,
+        type: "required",
+        prerequisites: [],
+      },
+      {
+        code: "CS105",
+        name: "Вэб технологийн үндэс",
+        credits: 3,
+        type: "elective",
+        prerequisites: [],
+      },
+    ],
+  },
+  {
+    semester: "1B",
+    totalCredits: 26,
+    courses: [
+      {
+        code: "CS201",
+        name: "Өгөгдлийн бүтэц ба алгоритм",
+        credits: 6,
+        type: "required",
+        prerequisites: ["CS101"],
+      },
+      {
+        code: "CS210",
+        name: "Компьютерийн архитектур",
+        credits: 5,
+        type: "required",
+        prerequisites: ["CS101"],
+      },
+      {
+        code: "MATH102",
+        name: "Шугаман алгебр",
+        credits: 6,
+        type: "required",
+        prerequisites: ["MATH101"],
+      },
+      {
+        code: "CS215",
+        name: "Өгөгдлийн сангийн үндэс",
+        credits: 5,
+        type: "elective",
+        prerequisites: ["CS101"],
+      },
+    ],
+  },
+  {
+    semester: "2A",
+    totalCredits: 28,
+    courses: [
+      {
+        code: "CS305",
+        name: "Үйлдлийн систем",
+        credits: 6,
+        type: "required",
+        prerequisites: ["CS201", "CS202"],
+      },
+      {
+        code: "CS310",
+        name: "Компьютерийн сүлжээ",
+        credits: 5,
+        type: "required",
+        prerequisites: ["CS201"],
+      },
+      {
+        code: "CS320",
+        name: "Программ хангамжийн инженерчлэл",
+        credits: 5,
+        type: "required",
+        prerequisites: ["CS201"],
+      },
+      {
+        code: "CS415",
+        name: "Гар утасны апп хөгжүүлэлт",
+        credits: 4,
+        type: "elective",
+        prerequisites: ["CS201"],
+      },
+    ],
+  },
+  {
+    semester: "2B",
+    totalCredits: 17,
+    courses: [
+      {
+        code: "CS401",
+        name: "Машин сургалт",
+        credits: 5,
+        type: "elective",
+        prerequisites: ["CS201", "MATH301"],
+      },
+      {
+        code: "CS420",
+        name: "Кибер аюулгүй байдлын үндэс",
+        credits: 4,
+        type: "elective",
+        prerequisites: ["CS310"],
+      },
+      {
+        code: "CS490",
+        name: "Төгсөлтийн төсөл",
+        credits: 8,
+        type: "required",
+        prerequisites: ["CS320", "CS305"],
+      },
+    ],
+  },
+];
+
+export const CATEGORY_CONFIG = {
+  basic: {
+    label: "Ерөнхий эрдэм",
+    color: "#534AB7",
+    bgColor: "#EEEDFE",
+    textColor: "#3C3489",
+  },
+  basicMajor: {
+    label: "Мэргэжлийн суурь",
+    color: "#BA7517",
+    bgColor: "#FAEEDA",
+    textColor: "#633806",
+  },
+  major: {
+    label: "Мэргэжлийн хичээл",
+    color: "#993C1D",
+    bgColor: "#FAECE7",
+    textColor: "#4A1B0C",
+  },
 };

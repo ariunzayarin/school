@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import ThemedText from "../ui/textWithStyle";
 import Flex from "../ui/flex";
@@ -6,9 +6,10 @@ import ParallaxScrollView from "../../components/parallax-scroll-view";
 import DropableContainer from "./dropableContainer";
 import AttendanceRecord from "./attendanceRecord";
 import AssignmentRecord from "./assignmentRecord";
-import LessonCard from "./lessonCard";
+// import LessonCard from "./lessonCard";
 
 export default function LessonDetail({ lesson, onBack }) {
+  const [expanded, setExpanded] = useState(false);
   if (!lesson) return null;
 
   const assignmentTypes = [...new Set(lesson.assignments.map((a) => a.type))];
@@ -57,13 +58,16 @@ export default function LessonDetail({ lesson, onBack }) {
   return (
     <ParallaxScrollView backButtonOnClick={() => onBack()}>
       <Flex gap={5}>
-        <DropableContainer main={main} child={child} />
-
-        <LessonCard
-          lessonId={lesson.id}
-          lessonName={lesson.name}
-          grades={lesson.grades}
+        <DropableContainer
+          isExpanded={expanded}
+          onToggle={() => setExpanded(!expanded)}
+          main={main}
+          child={child}
         />
+
+        <Flex isWhiteContainer>
+          <ThemedText>Дүнгийн задаргаа</ThemedText>
+        </Flex>
 
         <AttendanceRecord
           attendance={{

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, TouchableOpacity, Dimensions } from "react-native";
 import Flex from "./flex";
 import { IconSymbol } from "./icon-symbol";
@@ -6,13 +6,15 @@ import Divider from "./divider";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
-export default function DropableContainer({ main, child, onToggle, style }) {
-  const [isOpen, setIsOpen] = useState(false);
-
+export default function DropableContainer({
+  main,
+  child,
+  onToggle,
+  style,
+  isExpanded,
+}) {
   const toggle = () => {
-    const next = !isOpen;
-    setIsOpen(next);
-    onToggle?.(next);
+    onToggle();
   };
 
   const mainWidth = SCREEN_WIDTH - 100;
@@ -23,13 +25,13 @@ export default function DropableContainer({ main, child, onToggle, style }) {
         <Flex spaceBetween horizontal alignCenter>
           <Flex style={{ width: mainWidth }}>{main}</Flex>
           <IconSymbol
-            name={isOpen ? "chevron.up" : "chevron.down"}
+            name={isExpanded ? "chevron.up" : "chevron.down"}
             size={18}
             weight="medium"
             color={"#333"}
           />
         </Flex>
-        {isOpen && (
+        {isExpanded && (
           <>
             <Divider />
             {child}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import Flex from "./flex";
 import DropableContainer from "./dropableContainer";
@@ -8,14 +8,19 @@ import ProgressBar from "./progressBar";
 export default function AttendanceRecord({ attendance, collapsible }) {
   const haveLab = attendance.laboratory?.length > 0;
   const haveSem = attendance.seminar?.length > 0;
+  const [expanded, setExpanded] = useState(false);
 
   const summaryView = (
     <Flex style={styles.container} gap={16}>
-      <ProgressBar collapsible label="Лекцийн ирц" data={attendance.lecture} />
+      <ProgressBar
+        collapsible={collapsible}
+        label="Лекцийн ирц"
+        data={attendance.lecture}
+      />
 
       {haveLab && (
         <ProgressBar
-          collapsible
+          collapsible={collapsible}
           label="Лабораторийн ирц"
           data={attendance.laboratory}
         />
@@ -23,7 +28,7 @@ export default function AttendanceRecord({ attendance, collapsible }) {
 
       {haveSem && (
         <ProgressBar
-          collapsible
+          collapsible={collapsible}
           label="Семинарын ирц"
           data={attendance.seminar}
         />
@@ -38,7 +43,14 @@ export default function AttendanceRecord({ attendance, collapsible }) {
   );
 
   if (collapsible) {
-    return <DropableContainer main={summaryView} child={detailedView} />;
+    return (
+      <DropableContainer
+        isExpanded={expanded}
+        onToggle={() => setExpanded(!expanded)}
+        main={summaryView}
+        child={detailedView}
+      />
+    );
   }
 
   return summaryView;
