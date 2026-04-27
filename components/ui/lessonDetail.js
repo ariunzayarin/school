@@ -6,13 +6,34 @@ import ParallaxScrollView from "../../components/parallax-scroll-view";
 import DropableContainer from "./dropableContainer";
 import AttendanceRecord from "./attendanceRecord";
 import AssignmentRecord from "./assignmentRecord";
+import StatBox from "./statBox";
 // import LessonCard from "./lessonCard";
+
+function getLessonProgress(lesson) {
+  const totalMax = lesson.maxScores.reduce((s, m) => s + m.score, 0);
+
+  const earned = lesson.grades.reduce((s, g) => s + g.score, 0);
+
+  let canEarn = 30;
+
+  lesson.assignments.forEach((a) => {
+    if (a.score === null && a.maxScore) {
+      canEarn += a.maxScore;
+    }
+  });
+
+  const lost = totalMax - earned - canEarn;
+
+  return { totalMax, earned, lost, canEarn };
+}
 
 export default function LessonDetail({ lesson, onBack }) {
   const [expanded, setExpanded] = useState(false);
   if (!lesson) return null;
 
   const assignmentTypes = [...new Set(lesson.assignments.map((a) => a.type))];
+
+  let { earned, lost, canEarn } = getLessonProgress(lesson);
 
   const main = (
     <Flex>
@@ -65,8 +86,14 @@ export default function LessonDetail({ lesson, onBack }) {
           child={child}
         />
 
-        <Flex isWhiteContainer>
-          <ThemedText>Дүнгийн задаргаа</ThemedText>
+        <Flex style={styles.statsRow}>
+          {[
+            { val: earned, label: "Цуглуулсан" },
+            { val: lost, label: "Алдсан" },
+            { val: canEarn, label: "Авах боломжтой" },
+          ].map((stat) => (
+            <StatBox key={stat.label} label={stat.label} value={stat.val} />
+          ))}
         </Flex>
 
         <AttendanceRecord
@@ -114,5 +141,9 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: "#444",
     flexShrink: 1,
+  },
+  statsRow: {
+    flexDirection: "row",
+    gap: 10,
   },
 });

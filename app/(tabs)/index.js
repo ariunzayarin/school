@@ -15,6 +15,7 @@ import ThemedText from "../../components/ui/textWithStyle";
 import { StyleSheet } from "react-native";
 import Button from "../../components/ui/button";
 import { AssignmentRow } from "../../components/ui/assignmentRecord";
+import StatBox from "../../components/ui/statBox";
 
 export default function HomeScreen() {
   const availableDays = days.filter(
@@ -29,7 +30,7 @@ export default function HomeScreen() {
 
   if (weekVisible) {
     return (
-      <>
+      <ParallaxScrollView backButtonOnClick={() => setWeekVisible(false)}>
         <Tab
           tabItem={availableDays}
           onChange={setActiveDay}
@@ -38,7 +39,7 @@ export default function HomeScreen() {
         <Flex full>
           <ScheduleBox boxItems={schedule} activeBoxKey={activeDay} />
         </Flex>
-      </>
+      </ParallaxScrollView>
     );
   }
 
@@ -55,33 +56,34 @@ export default function HomeScreen() {
           { val: `${thisSemester.gpa}%`, label: "Avg GPA" },
           { val: String(ASSIGNMENTS.length), label: "Pending Assignments" },
         ].map((stat) => (
-          <Flex key={stat.label} style={styles.statCard}>
-            <ThemedText style={styles.statVal}>{stat.val}</ThemedText>
-            <ThemedText style={styles.statLabel}>{stat.label}</ThemedText>
-          </Flex>
+          <StatBox key={stat.label} label={stat.label} value={stat.val} />
         ))}
       </Flex>
       <Flex style={styles.sectionHeader}>
         <ThemedText style={styles.sectionTitle}>Өнөөдрийн хуваарь</ThemedText>
         <Button
-          size="size_sm"
-          variant="variant_simple"
-          onPress={() => setWeekVisible(true)}
+          size="sm"
+          variant="outline"
+          onClick={() => setWeekVisible(true)}
           text={"Бүх хуваарь"}
         />
       </Flex>
       <Flex style={styles.schedList}>
         <ScheduleBox boxItems={schedule} activeBoxKey={todayKey} />
       </Flex>
-      {ASSIGNMENTS.length > 0 &&
-        ASSIGNMENTS.map((a) => (
-          <AssignmentRow
-            key={a.id}
-            dateRange={a.dateRange}
-            name={a.title}
-            lesson={a.subject}
-          />
-        ))}
+      <ThemedText style={styles.sectionTitle}>Хийх даалгавар</ThemedText>
+      <Flex isWhiteContainer>
+        {ASSIGNMENTS.length > 0 &&
+          ASSIGNMENTS.map((a, index) => (
+            <AssignmentRow
+              key={a.id}
+              dateRange={a.dateRange}
+              name={a.title}
+              lesson={a.subject}
+              isLast={index === ASSIGNMENTS.length - 1}
+            />
+          ))}
+      </Flex>
     </ParallaxScrollView>
   );
 }
@@ -101,31 +103,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 10,
   },
-  statCard: {
-    flex: 1,
-    backgroundColor: "#FFFFFF",
-    borderRadius: 12,
-    padding: 12,
-    alignItems: "center",
-    borderWidth: 0.5,
-    borderColor: "rgba(0,0,0,0.1)",
-  },
-  statVal: {
-    fontSize: 22,
-    fontWeight: "300",
-    color: "#2C2A26",
-    lineHeight: 28,
-  },
-  statLabel: {
-    fontSize: 10,
-    color: "#888780",
-    marginTop: 2,
-    textTransform: "uppercase",
-    letterSpacing: 0.4,
-  },
   sectionHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
   },
-  sectionTitle: { fontWeight: "700", color: "#2C2A26" },
+  sectionTitle: {
+    fontWeight: "700",
+    color: "#2C2A26",
+  },
 });

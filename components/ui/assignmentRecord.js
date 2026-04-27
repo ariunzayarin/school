@@ -4,24 +4,29 @@ import ThemedText from "./textWithStyle";
 import Flex from "./flex";
 import DropableContainer from "./dropableContainer";
 import ProgressBar from "./progressBar";
+import Divider from "./divider";
 
-export function AssignmentRow({ name, dateRange, score, lesson }) {
+export function AssignmentRow({ name, dateRange, score, lesson, isLast }) {
   const scoreText = score === null ? "" : `${score} оноо`;
+
   return (
-    <Flex horizontal spaceBetween alignCenter style={styles.assignmentRow}>
-      <Flex style={{ flexShrink: 1, marginRight: 12 }}>
-        {lesson && <ThemedText type="subtitle">{lesson}</ThemedText>}
-        <ThemedText type="defaultSemiBold" style={styles.assignmentName}>
-          {name}
-        </ThemedText>
-        <ThemedText style={styles.assignmentDate}>{dateRange}</ThemedText>
+    <>
+      <Flex horizontal spaceBetween alignCenter>
+        <Flex style={{ flexShrink: 1, marginRight: 12 }}>
+          {lesson && <ThemedText type="subtitle">{lesson}</ThemedText>}
+          <ThemedText type="defaultSemiBold" style={styles.assignmentName}>
+            {name}
+          </ThemedText>
+          <ThemedText style={styles.assignmentDate}>{dateRange}</ThemedText>
+        </Flex>
+        {score && (
+          <ThemedText type="defaultSemiBold" style={styles.assignmentScore}>
+            {scoreText}
+          </ThemedText>
+        )}
       </Flex>
-      {score && (
-        <ThemedText type="defaultSemiBold" style={styles.assignmentScore}>
-          {scoreText}
-        </ThemedText>
-      )}
-    </Flex>
+      {!isLast && <Divider margin={1} />}
+    </>
   );
 }
 
@@ -39,14 +44,17 @@ export default function AssignmentRecord({ assignments }) {
     </Flex>
   );
 
+  const assignmentsCount = assignments.length;
+
   const detailedView = (
     <Flex gap={16} style={styles.container}>
-      {assignments.map((a) => (
+      {assignments.map((a, index) => (
         <AssignmentRow
           key={a.name}
           name={a.name}
           dateRange={a.dateRange}
           score={a.score}
+          isLast={index === assignmentsCount - 1}
         />
       ))}
     </Flex>

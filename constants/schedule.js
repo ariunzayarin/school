@@ -608,8 +608,8 @@ export const semesters = [
 export const ASSIGNMENTS = [
   {
     id: "1",
-    subject: "Linear Algebra",
-    title: "Problem Set 7 — Eigenvalues",
+    subject: "Шугаман алгебр",
+    title: "Бодлогын багц 7 — Өөрийн утга",
     due: "Due tomorrow",
     type: "Written",
     dateRange: "2025/02/03 - 2025/02/24",
@@ -619,8 +619,8 @@ export const ASSIGNMENTS = [
   },
   {
     id: "2",
-    subject: "Data Structures",
-    title: "Lab 5 — Binary Search Tree",
+    subject: "Өгөгдлийн бүтэц",
+    title: "Лаборатори 5 — Хоёртын хайлтын мод",
     due: "Due in 3 days",
     type: "Coding",
     pts: 60,
@@ -630,8 +630,8 @@ export const ASSIGNMENTS = [
   },
   {
     id: "3",
-    subject: "Statistics",
-    title: "Midterm Report — Regression Analysis",
+    subject: "Статистик",
+    title: "Дунд шалгалтын тайлан — Регрессийн шинжилгээ",
     due: "Due Apr 12",
     type: "Report",
     pts: 100,
