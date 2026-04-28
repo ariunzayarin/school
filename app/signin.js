@@ -6,44 +6,7 @@ import TextInput from "../components/ui/textInput";
 import Button from "../components/ui/button";
 import Flex from "../components/ui/flex";
 import ThemedText from "../components/ui/textWithStyle";
-
-const USE_API = false;
-
-const AUTH_API_URL = "https://your-api.com/api/auth/login"; // TODO: replace with real endpoint
-
-async function loginWithAPI(email, password) {
-  const response = await fetch(AUTH_API_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password }),
-  });
-
-  if (!response.ok) {
-    const err = await response.json().catch(() => ({}));
-    throw new Error(err.message || "Нэвтрэх үед алдаа гарлаа");
-  }
-
-  const data = await response.json();
-  return data;
-}
-
-async function loginWithMock(email, password) {
-  await new Promise((res) => setTimeout(res, 600));
-
-  if (password !== "123") {
-    throw new Error("Нэвтрэх мэдээлэл буруу байна");
-  }
-
-  const role = email.startsWith("t") ? "teacher" : "student";
-  return { role, token: "mock-token-123" };
-}
-
-async function login(email, password) {
-  const normalizedEmail = email.trim().toLowerCase();
-  return USE_API
-    ? loginWithAPI(normalizedEmail, password)
-    : loginWithMock(normalizedEmail, password);
-}
+import { login as dbLogin } from "../database/auth";
 
 export default function SignInScreen() {
   const router = useRouter();
@@ -58,6 +21,7 @@ export default function SignInScreen() {
       setError("И-мэйл хаягаа оруулна уу");
       return;
     }
+
     if (!password) {
       setError("Нууц үгээ оруулна уу");
       return;
@@ -65,18 +29,21 @@ export default function SignInScreen() {
 
     setError("");
     setLoading(true);
-
     try {
-      const { role, token } = await login(email, password);
+      const success = await dbLogin(email.trim().toLowerCase(), password);
 
-      await AsyncStorage.multiSet([
-        ["userRole", role],
-        ["userToken", token],
-      ]);
+      if (!success) {
+        setError("Нэвтрэх мэдээлэл буруу байна");
+        return;
+      }
+
+      // store session (simple)
+      await AsyncStorage.setItem("isLoggedIn", "true");
 
       router.replace("/(tabs)");
     } catch (err) {
-      setError(err.message || "Нэвтрэх үед алдаа гарлаа");
+      setError("Алдаа гарлаа");
+      console.error(err);
     } finally {
       setLoading(false);
     }
