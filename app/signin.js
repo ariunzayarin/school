@@ -30,15 +30,15 @@ export default function SignInScreen() {
     setError("");
     setLoading(true);
     try {
-      const success = await dbLogin(email.trim().toLowerCase(), password);
+      const user = await dbLogin(email.trim().toLowerCase(), password);
 
-      if (!success) {
+      if (!user) {
         setError("Нэвтрэх мэдээлэл буруу байна");
         return;
       }
 
-      // store session (simple)
       await AsyncStorage.setItem("isLoggedIn", "true");
+      await AsyncStorage.setItem("userRole", user[0].role);
 
       router.replace("/(tabs)");
     } catch (err) {
@@ -57,7 +57,7 @@ export default function SignInScreen() {
       gap={16}
       style={{
         height: "100%",
-        backgroundColor: "#DCE5F4",
+        backgroundColor: "#EEF1F8",
         padding: 50,
       }}
     >

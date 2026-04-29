@@ -16,12 +16,14 @@ export default function StatBox({ label, value }) {
 const styles = StyleSheet.create({
   statCard: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
     borderRadius: 12,
     padding: 12,
     alignItems: "center",
-    borderWidth: 0.5,
-    borderColor: "rgba(0,0,0,0.1)",
+    shadowColor: "#000",
+    backgroundColor: "#fff",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
   statVal: {
     fontSize: 22,

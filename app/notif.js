@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "expo-router";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { IconSymbol } from "../components/ui/icon-symbol";
-import  ThemedText  from "../components/ui/textWithStyle";
+import ThemedText from "../components/ui/textWithStyle";
 import { Notification } from "../components/ui/notif";
 
 export default function Notifications() {
@@ -10,7 +10,7 @@ export default function Notifications() {
 
   return (
     <View
-      style={{ backgroundColor: "#DCE5F4", height: "100%", paddingTop: 60 }}
+      style={{ backgroundColor: "#EEF1F8", height: "100%", paddingTop: 60 }}
     >
       <View style={styles.header}>
         <TouchableOpacity
@@ -43,7 +43,7 @@ export default function Notifications() {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: "#DCE5F4",
+    backgroundColor: "#EEF1F8",
     flexDirection: "row",
     paddingHorizontal: 20,
     gap: 20,

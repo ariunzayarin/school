@@ -17,7 +17,7 @@ export default function TabLayout() {
         tabBarStyle: {
           paddingTop: 8,
           height: 90,
-          backgroundColor: "#DCE5F4",
+          backgroundColor: "#EEF1F8",
           shadowColor: "#000",
           shadowOffset: { width: 0, height: 1 },
           shadowOpacity: 0.2,

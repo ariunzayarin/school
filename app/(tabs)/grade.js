@@ -13,7 +13,7 @@ const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 function getGpaColor(gpa) {
   if (gpa >= 3.7) return "#5BC4A8";
-  if (gpa >= 3.3) return "#4C9BE8";
+  if (gpa >= 3.3) return "#368fe8";
   if (gpa >= 3.0) return "#F5A623";
   return "#E87C7C";
 }
@@ -247,7 +247,7 @@ export default function GradeScreen() {
 const styles = StyleSheet.create({
   heroCard: {
     borderRadius: 24,
-    backgroundColor: "#2B3E5D",
+    backgroundColor: "#8AB0D8",
     padding: 22,
     marginBottom: 16,
     overflow: "hidden",
@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
   },
   heroSubLabel: {
     fontSize: 12,
-    color: "#8A93B0",
+    color: "#fff",
     letterSpacing: 1.5,
     textTransform: "uppercase",
     marginBottom: 4,
@@ -292,7 +292,7 @@ const styles = StyleSheet.create({
   },
   heroGpaMax: {
     fontSize: 18,
-    color: "#5BC4A8",
+    color: "#fff",
     marginBottom: 8,
     fontWeight: "600",
   },
@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
   },
   heroStatLabel: {
     fontSize: 12,
-    color: "#8A93B0",
+    color: "#fff",
   },
   heroStatValue: {
     fontSize: 18,
@@ -335,8 +335,8 @@ const styles = StyleSheet.create({
   },
   heroBarLabel: {
     flex: 1,
-    fontSize: 8,
-    color: "#555e82",
+    fontSize: 10,
+    color: "#fff",
     textAlign: "center",
   },
 

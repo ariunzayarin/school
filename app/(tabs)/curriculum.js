@@ -149,9 +149,9 @@ const AllCoursesTab = () => {
     <Flex>
       <Flex style={styles.statRow}>
         {[
-          { label: "Required", value: totalRequired, sub: "courses" },
-          { label: "Elective", value: totalElective, sub: "courses" },
-          { label: "Total", value: totalCredits, sub: "credits" },
+          { label: "Заавал судлах", value: totalRequired, sub: "хичээл" },
+          { label: "Сонгон судлах", value: totalElective, sub: "хичээл" },
+          { label: "Нийт", value: totalCredits, sub: "кредит" },
         ].map((s) => (
           <Flex key={s.label} style={styles.statCard}>
             <ThemedText style={styles.statLabel}>{s.label}</ThemedText>

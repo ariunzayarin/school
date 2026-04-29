@@ -7,7 +7,6 @@ import DropableContainer from "./dropableContainer";
 import AttendanceRecord from "./attendanceRecord";
 import AssignmentRecord from "./assignmentRecord";
 import StatBox from "./statBox";
-// import LessonCard from "./lessonCard";
 
 function getLessonProgress(lesson) {
   const totalMax = lesson.maxScores.reduce((s, m) => s + m.score, 0);

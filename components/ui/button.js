@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   variant_outline: {
     backgroundColor: "transparent",
     borderWidth: 1,
-    borderColor: "#669AF2",
+    borderColor: "#000",
   },
   variant_simple: {
     backgroundColor: "transparent",
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   label_lg: { fontSize: 16 },
 
   label_primary: { color: "#fff" },
-  label_outline: { color: "#669AF2" },
+  label_outline: { color: "#000" },
   label_simple: { color: "#333" },
 
   block: { width: "100%" },

@@ -52,9 +52,9 @@ export default function HomeScreen() {
       </Flex>
       <Flex style={styles.statsRow}>
         {[
-          { val: String(thisSemester.courses.length), label: "Courses" },
-          { val: `${thisSemester.gpa}%`, label: "Avg GPA" },
-          { val: String(ASSIGNMENTS.length), label: "Pending Assignments" },
+          { val: String(thisSemester.courses.length), label: "хичээл" },
+          { val: `${thisSemester.gpa}%`, label: "GPA" },
+          { val: String(ASSIGNMENTS.length), label: "өгөх даалгаврууд" },
         ].map((stat) => (
           <StatBox key={stat.label} label={stat.label} value={stat.val} />
         ))}
@@ -63,9 +63,10 @@ export default function HomeScreen() {
         <ThemedText style={styles.sectionTitle}>Өнөөдрийн хуваарь</ThemedText>
         <Button
           size="sm"
-          variant="outline"
+          variant="simple"
           onClick={() => setWeekVisible(true)}
           text={"Бүх хуваарь"}
+          iconRight={"chevron.right"}
         />
       </Flex>
       <Flex style={styles.schedList}>
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 6,
-    backgroundColor: "#B5C8E8",
+    backgroundColor: "#d4e0f4",
     alignSelf: "flex-start",
     paddingHorizontal: 12,
     paddingVertical: 5,
