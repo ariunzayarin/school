@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     minHeight: 30,
     overflow: "hidden",
     borderLeftWidth: 4,
-    borderLeftColor: "transparent", // overridden per instance via widget
+    borderLeftColor: "transparent",
   },
   widget: {
     position: "absolute",

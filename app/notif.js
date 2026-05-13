@@ -4,6 +4,7 @@ import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { IconSymbol } from "../components/ui/icon-symbol";
 import ThemedText from "../components/ui/textWithStyle";
 import { Notification } from "../components/ui/notif";
+import { notifications } from "../constants/schedule";
 
 export default function Notifications() {
   const router = useRouter();
@@ -27,15 +28,14 @@ export default function Notifications() {
         <ThemedText type="title">Мэдэгдэл</ThemedText>
       </View>
       <View style={styles.container}>
-        <Notification
-          title="Хүн ба компьютерийн харилцааны зохиомж"
-          content="Лаборатори 2: Сүүлийн хугацаа дөхөж байна"
-          type="warning"
-        />
-        <Notification
-          title="Хүн ба компьютерийн харилцааны зохиомж"
-          content="Лаборатори 2: Сүүлийн хугацаа дөхөж байна"
-        />
+        {notifications.map((notif) => (
+          <Notification
+            key={notif.title}
+            title={notif.title}
+            content={notif.content}
+            type={notif.type}
+          />
+        ))}
       </View>
     </View>
   );

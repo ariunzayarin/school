@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import ThemedText from "../ui/textWithStyle";
 import Flex from "../ui/flex";
-import ParallaxScrollView from "../../components/parallax-scroll-view";
-import DropableContainer from "./dropableContainer";
-import AttendanceRecord from "./attendanceRecord";
-import AssignmentRecord from "./assignmentRecord";
-import StatBox from "./statBox";
+import ParallaxScrollView from "../parallax-scroll-view";
+import DropableContainer from "../ui/dropableContainer";
+import AttendanceRecord from "../ui/attendanceRecord";
+import AssignmentRecord from "../ui/assignmentRecord";
+import StatBox from "../ui/statBox";
 
 function getLessonProgress(lesson) {
   const totalMax = lesson.maxScores.reduce((s, m) => s + m.score, 0);

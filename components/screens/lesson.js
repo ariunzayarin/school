@@ -1,4 +1,4 @@
-import LessonCard from "./lessonCard";
+import LessonCard from "../ui/lessonCard";
 
 export function LessonScreen({ onSelect, lessons }) {
   return (

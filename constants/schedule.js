@@ -996,3 +996,15 @@ export const CATEGORY_CONFIG = {
     textColor: "#4A1B0C",
   },
 };
+
+export const notifications = [
+  {
+    title: "Хүн ба компьютерийн харилцааны зохиомж 1",
+    content: "Лаборатори 2: Сүүлийн хугацаа дөхөж байна",
+    type: "warning",
+  },
+  {
+    title: "Хүн ба компьютерийн харилцааны зохиомж 2",
+    content: "Лаборатори 2: Сүүлийн хугацаа дөхөж байна",
+  },
+];

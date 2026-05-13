@@ -4,12 +4,12 @@ import Flex from "./flex";
 import DropableContainer from "./dropableContainer";
 import AttendanceRecord from "./attendanceRecord";
 
-export default function ScheduleBox({ boxItems, activeBoxKey }) {
+export default function ScheduleBox({ boxItems, activeBoxKey, style }) {
   const [expanded, setExpanded] = useState(null);
   const toggle = (id) => setExpanded((prev) => (prev === id ? null : id));
 
   return (
-    <>
+    <Flex style={style}>
       {boxItems[activeBoxKey]?.map((item, index) => {
         const hasAttendance = !!item.attendance;
 
@@ -43,12 +43,12 @@ export default function ScheduleBox({ boxItems, activeBoxKey }) {
           <DropableContainer
             isExpanded={expanded === item}
             onToggle={() => toggle(item)}
-            key={index}
             main={main}
             child={child}
+            key={index}
           />
         );
       })}
-    </>
+    </Flex>
   );
 }

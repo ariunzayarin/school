@@ -15,7 +15,7 @@ import ThemedText from "../../components/ui/textWithStyle";
 import { StyleSheet } from "react-native";
 import Button from "../../components/ui/button";
 import { AssignmentRow } from "../../components/ui/assignmentRecord";
-import StatBox from "../../components/ui/statBox";
+import Divider from "../../components/ui/divider";
 
 export default function HomeScreen() {
   const availableDays = days.filter(
@@ -44,21 +44,35 @@ export default function HomeScreen() {
   }
 
   return (
-    <ParallaxScrollView title={`Сайн уу? ${student[0].firstName}`}>
-      <Flex style={styles.semPill}>
-        <ThemedText type="defaultSemiBold">
-          Хавар 2025 · 10 дах долоо хоног
-        </ThemedText>
-      </Flex>
-      <Flex style={styles.statsRow}>
-        {[
-          { val: String(thisSemester.courses.length), label: "хичээл" },
-          { val: `${thisSemester.gpa}%`, label: "GPA" },
-          { val: String(ASSIGNMENTS.length), label: "өгөх даалгаврууд" },
-        ].map((stat) => (
-          <StatBox key={stat.label} label={stat.label} value={stat.val} />
-        ))}
-      </Flex>
+    <ParallaxScrollView
+      sticky={true}
+      title={`Сайн уу? ${student[0].firstName}`}
+      stickyContent={
+        <Flex style={styles.heroCard}>
+          <Flex style={styles.semPill}>
+            <ThemedText type="defaultSemiBold" style={{ color: "#fff" }}>
+              Хавар 2025 · 10 дах долоо хоног
+            </ThemedText>
+          </Flex>
+          <Divider
+            margin={1}
+            style={{ backgroundColor: "#fff", marginBottom: 10 }}
+          />
+          <Flex style={styles.heroStatsRow}>
+            {[
+              { val: String(thisSemester.courses.length), label: "Хичээл" },
+              { val: `${thisSemester.gpa}%`, label: "GPA" },
+              { val: String(ASSIGNMENTS.length), label: "Өгөх даалгаврууд" },
+            ].map(({ label, val }) => (
+              <Flex key={label} style={styles.heroStat}>
+                <ThemedText style={styles.heroStatLabel}>{label}</ThemedText>
+                <ThemedText style={styles.heroStatValue}>{val}</ThemedText>
+              </Flex>
+            ))}
+          </Flex>
+        </Flex>
+      }
+    >
       <Flex style={styles.sectionHeader}>
         <ThemedText style={styles.sectionTitle}>Өнөөдрийн хуваарь</ThemedText>
         <Button
@@ -70,7 +84,11 @@ export default function HomeScreen() {
         />
       </Flex>
       <Flex style={styles.schedList}>
-        <ScheduleBox boxItems={schedule} activeBoxKey={todayKey} />
+        <ScheduleBox
+          // style={{ flexDirection: "row", gap: 15 }}
+          boxItems={schedule}
+          activeBoxKey={todayKey}
+        />
       </Flex>
       <ThemedText style={styles.sectionTitle}>Хийх даалгавар</ThemedText>
       <Flex isWhiteContainer>
@@ -90,15 +108,41 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  heroCard: {
+    gap: 10,
+    borderRadius: 24,
+    backgroundColor: "#8AB0D8",
+    padding: 22,
+    overflow: "hidden",
+    margin: 20,
+    marginBottom: 0,
+  },
+  heroStatsRow: {
+    flexDirection: "row",
+    gap: 20,
+    justifyContent: "space-evenly",
+  },
+  heroStat: {
+    gap: 5,
+  },
+  heroStatLabel: {
+    fontSize: 12,
+    color: "#fff",
+    fontWeight: "700",
+    textAlign: "center",
+  },
+  heroStatValue: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: "#fff",
+    textAlign: "center",
+  },
   semPill: {
     flexDirection: "row",
     alignItems: "center",
     gap: 6,
-    backgroundColor: "#d4e0f4",
-    alignSelf: "flex-start",
-    paddingHorizontal: 12,
-    paddingVertical: 5,
-    borderRadius: 100,
+    marginBottom: 10,
+    justifyContent: "center",
   },
   statsRow: {
     flexDirection: "row",

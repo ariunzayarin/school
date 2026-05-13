@@ -1,8 +1,8 @@
 import { useRole } from "../../hooks/useRole";
-import { LessonScreen as LessonScreenCard } from "../../components/ui/lesson";
+import { LessonScreen as LessonScreenCard } from "../../components/screens/lesson";
 import { useState } from "react";
 import ParallaxScrollView from "../../components/parallax-scroll-view";
-import LessonDetail from "../../components/ui/lessonDetail";
+import LessonDetail from "../../components/screens/lessonDetail";
 import { lessons } from "../../constants/schedule";
 
 export default function LessonScreen() {

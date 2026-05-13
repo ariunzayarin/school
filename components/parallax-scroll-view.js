@@ -5,19 +5,21 @@ import ThemedText from "./ui/textWithStyle";
 import { useThemeColor } from "../hooks/use-theme-color";
 import { Notifications } from "./ui/notifWidget";
 import Button from "../components/ui/button";
+import Flex from "./ui/flex";
 
-const HEADER_HEIGHT = 120;
+const HEADER_HEIGHT = 110;
 
 export default function ParallaxScrollView({
   children,
   title,
   backButtonOnClick,
+  stickyContent,
 }) {
   const backgroundColor = useThemeColor({}, "background");
 
   return (
     <ThemedView style={{ flex: 1, backgroundColor }}>
-      <Animated.View style={styles.header}>
+      <Flex style={styles.header}>
         {title && <ThemedText type="title">{title}</ThemedText>}
         {backButtonOnClick && (
           <Button
@@ -28,7 +30,8 @@ export default function ParallaxScrollView({
           />
         )}
         <Notifications />
-      </Animated.View>
+      </Flex>
+      {stickyContent && <Flex>{stickyContent}</Flex>}
 
       <Animated.ScrollView
         style={{ flex: 1 }}
@@ -51,6 +54,10 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     alignItems: "center",
     justifyContent: "space-between",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
   content: {
     padding: 20,
